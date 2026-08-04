@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root{
+  --cream:      #f1ede2;
+  --cream-deep: #e8e2d0;
+  --paper:      #faf8f2;
+  --ink:        #16223a;
+  --ink-soft:   #3c4a63;
+  --teal:       #2f5d50;
+  --teal-soft:  #6d8f83;
+  --rust:       #c9822e;
+  --line:       #ddd5bd;
+  --line-soft:  #e6e0cd;
+  --gray:       #837d6c;
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+*{ box-sizing:border-box; }
+
+html,body{
+  margin:0; padding:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--font-body);
+  -webkit-font-smoothing:antialiased;
+}
+
+.app{
+  display:flex;
+  min-height:100vh;
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar{
+  width:300px;
+  flex-shrink:0;
+  background:var(--cream);
+  border-right:1px solid var(--line);
+  padding:28px 22px 20px;
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow-y:auto;
+}
+
+.sidebar-head{ margin-bottom:26px; }
+
+.course-code{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:22px;
+  letter-spacing:0.02em;
+  color:var(--ink);
+}
+.course-sub{
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  color:var(--gray);
+  margin-top:4px;
+  letter-spacing:0.02em;
+}
+
+.exam-group{ margin-bottom:22px; }
+
+.exam-label{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.14em;
+  color:var(--teal-soft);
+  text-transform:uppercase;
+  padding:4px 10px 8px;
+  border-bottom:1px solid var(--line-soft);
+  margin-bottom:6px;
+}
+
+.topic-item{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:9px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  color:var(--ink-soft);
+  transition:background .15s ease, color .15s ease;
+}
+.topic-item:hover{ background:var(--cream-deep); }
+
+.topic-item .num{
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--gray);
+  padding-top:2px;
+  min-width:18px;
+}
+.topic-item .label{
+  font-size:14.5px;
+  line-height:1.35;
+}
+
+.topic-item.active{
+  background:var(--ink);
+  color:#f4f1e8;
+}
+.topic-item.active .num{ color:var(--rust); }
+.topic-item.active .label{ color:#f4f1e8; font-weight:600;}
+
+.sidebar-foot{
+  margin-top:24px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--gray);
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.sidebar-foot .dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--teal);
+  display:inline-block;
+}
+
+.sidebar-toggle{
+  display:none;
+  position:fixed;
+  top:14px; left:14px;
+  z-index:50;
+  background:var(--ink);
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  width:38px;height:38px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* ---------- MAIN ---------- */
+.main{
+  flex:1;
+  min-width:0;
+  background:var(--paper);
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  padding:0 40px;
+  height:56px;
+  border-bottom:1px solid var(--line);
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  color:var(--gray);
+  overflow-x:auto;
+  white-space:nowrap;
+}
+.topbar .crumb-exam{
+  color:var(--ink);
+  font-weight:600;
+  letter-spacing:.03em;
+}
+.topbar .crumb-sep{ color:var(--line); }
+.topbar .crumb-topic{ color:var(--teal); }
+
+.content{
+  padding:48px 56px 90px;
+  max-width:980px;
+}
+
+.hero{
+  display:flex;
+  gap:40px;
+  align-items:flex-start;
+  margin-bottom:6px;
+}
+.hero-text{ flex:1; min-width:0; }
+
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:.08em;
+  color:var(--gray);
+  text-transform:uppercase;
+  margin-bottom:14px;
+  border-bottom:2px solid var(--ink);
+  display:inline-block;
+  padding-bottom:2px;
+}
+
+.headline{
+  font-family:var(--font-display);
+  font-size:40px;
+  line-height:1.15;
+  font-weight:600;
+  color:var(--ink);
+  margin:0 0 22px;
+}
+.headline .accent{ color:var(--teal); }
+
+.intro p{
+  font-size:17px;
+  line-height:1.7;
+  color:var(--ink-soft);
+  margin:0 0 16px;
+}
+.intro ul, .intro ol{
+  font-size:16.5px;
+  line-height:1.7;
+  color:var(--ink-soft);
+  padding-left:22px;
+  margin:0 0 16px;
+}
+.intro li{ margin-bottom:6px; }
+.intro strong{ color:var(--ink); }
+.intro code{
+  background:var(--cream-deep);
+  padding:1px 5px;
+  border-radius:4px;
+  font-family:var(--font-mono);
+  font-size:.92em;
+}
+
+.hero-sig{
+  width:220px;
+  flex-shrink:0;
+}
+.hero-sig svg{ width:100%; height:auto; }
+
+.meta-row{
+  display:flex;
+  gap:26px;
+  flex-wrap:wrap;
+  margin:26px 0 40px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  color:var(--gray);
+}
+.meta-row b{ color:var(--ink); font-weight:600; }
+
+/* ---------- EXERCISES ---------- */
+.ex-section-title{
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--gray);
+  margin:0 0 18px;
+  padding-bottom:8px;
+  border-bottom:1px solid var(--line);
+}
+
+.exercise{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:14px;
+  margin-bottom:18px;
+  overflow:hidden;
+}
+.exercise.exam-style{
+  border-color:var(--rust);
+  box-shadow:0 0 0 1px rgba(201,130,46,.15);
+}
+
+.ex-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  padding:16px 20px;
+}
+.ex-ref{
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  color:var(--teal);
+  letter-spacing:.03em;
+}
+.ex-ref .tag{
+  display:inline-block;
+  margin-left:8px;
+  padding:1px 7px;
+  border-radius:20px;
+  background:var(--rust);
+  color:#fff;
+  font-size:10px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  vertical-align:middle;
+}
+
+.ex-body{
+  padding:0 20px 18px;
+  font-size:15.5px;
+  line-height:1.75;
+  color:var(--ink-soft);
+}
+.ex-body p{ margin:0 0 10px; }
+
+.res-btn{
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:.04em;
+  background:var(--ink);
+  color:#f4f1e8;
+  border:none;
+  padding:7px 14px;
+  border-radius:20px;
+  cursor:pointer;
+  transition:background .15s ease;
+  flex-shrink:0;
+}
+.res-btn:hover{ background:var(--teal); }
+.res-btn.open{ background:var(--teal); }
+
+.resolution{
+  display:none;
+  border-top:1px dashed var(--line);
+  padding:18px 20px 22px;
+  background:var(--paper);
+  font-size:15px;
+  line-height:1.75;
+  color:var(--ink-soft);
+}
+.resolution.show{ display:block; }
+.resolution p{ margin:0 0 12px; }
+.resolution .step-label{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--teal);
+  display:block;
+  margin:14px 0 4px;
+}
+.resolution .step-label:first-child{ margin-top:0; }
+.resolution table{
+  width:100%;
+  border-collapse:collapse;
+  margin:8px 0 14px;
+  font-size:14.5px;
+}
+.resolution table td, .resolution table th{
+  border:1px solid var(--line);
+  padding:6px 10px;
+  text-align:left;
+  vertical-align:top;
+}
+.resolution table th{
+  font-family:var(--font-mono);
+  font-size:11px;
+  background:var(--cream-deep);
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.resolution .final{
+  margin-top:10px;
+  padding:10px 14px;
+  background:var(--cream-deep);
+  border-left:3px solid var(--teal);
+  border-radius:0 8px 8px 0;
+  font-weight:600;
+  color:var(--ink);
+}
+
+.katex{ font-size:1.02em; }
+.katex-display{ margin:.6em 0 !important; overflow-x:auto; overflow-y:hidden; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:900px){
+  .sidebar{
+    position:fixed;
+    left:-320px;
+    z-index:40;
+    box-shadow:0 0 40px rgba(0,0,0,.2);
+    transition:left .2s ease;
+  }
+  .sidebar.open{ left:0; }
+  .sidebar-toggle{ display:block; }
+  .content{ padding:80px 22px 70px; }
+  .hero{ flex-direction:column-reverse; }
+  .hero-sig{ width:150px; }
+  .headline{ font-size:30px; }
+  .topbar{ padding:0 20px 0 60px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; }
+}
