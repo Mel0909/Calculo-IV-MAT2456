@@ -365,6 +365,77 @@ html,body{
   color:var(--ink);
 }
 
+/* ---------- EXERCÍCIOS EM LETRAS/ITENS ---------- */
+.parts{
+  border-top:1px dashed var(--line);
+}
+.part{
+  border-bottom:1px solid var(--line-soft);
+  background:var(--paper);
+}
+.part:last-child{ border-bottom:none; }
+.part-head{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:11px 20px;
+}
+.part-label{
+  flex-shrink:0;
+  min-width:30px;
+  height:24px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 7px;
+  border-radius:20px;
+  background:var(--cream-deep);
+  border:1px solid var(--line);
+  font-family:var(--font-mono);
+  font-size:11px;
+  font-weight:600;
+  color:var(--teal);
+}
+.part-statement{
+  flex:1;
+  font-size:15px;
+  line-height:1.65;
+  color:var(--ink-soft);
+  padding-top:1px;
+}
+.part-statement p{ margin:0; }
+.res-btn.small{
+  font-size:11px;
+  padding:5px 11px;
+  align-self:flex-start;
+  min-width:88px;
+  text-align:center;
+}
+.part-tools{ display:flex; gap:8px; flex-shrink:0; }
+.ghost-btn{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.04em;
+  background:transparent;
+  color:var(--teal);
+  border:1px solid var(--line);
+  padding:5px 11px;
+  border-radius:20px;
+  cursor:pointer;
+  transition:background .15s ease, color .15s ease;
+}
+.ghost-btn:hover{ background:var(--teal); color:#f4f1e8; border-color:var(--teal); }
+.part .resolution{
+  border-top:1px dashed var(--line);
+  background:var(--cream);
+  padding:16px 20px 20px 62px;
+}
+@media (max-width:720px){
+  .part-head{ flex-wrap:wrap; }
+  .part-statement{ flex:1 1 100%; order:3; }
+  .part .resolution{ padding-left:20px; }
+}
+
 .katex{ font-size:1.02em; }
 .katex-display{ margin:.6em 0 !important; overflow-x:auto; overflow-y:hidden; }
 

@@ -75,16 +75,47 @@ function renderTopbar(exam, topic){
 function renderContent(exam, topic){
   const c = document.getElementById('content');
 
-  const exercisesHTML = topic.exercises.map((ex, i) => `
-    <div class="exercise ${ex.examStyle ? 'exam-style' : ''}">
-      <div class="ex-head">
-        <span class="ex-ref">${ex.ref}${ex.examStyle ? '<span class="tag">síntese</span>' : ''}</span>
-        <button class="res-btn" data-target="res-${topic.id}-${i}">Resolução</button>
+  const exercisesHTML = topic.exercises.map((ex, i) => {
+    // --- exercício dividido em letras/itens independentes ---
+    if (ex.parts){
+      const partsHTML = ex.parts.map((p, j) => `
+        <div class="part">
+          <div class="part-head">
+            <span class="part-label">${p.label}</span>
+            <div class="part-statement">${p.statement}</div>
+            <button class="res-btn small" data-target="res-${topic.id}-${i}-${j}">Resolução</button>
+          </div>
+          <div class="resolution" id="res-${topic.id}-${i}-${j}">${p.resolution}</div>
+        </div>
+      `).join('');
+
+      return `
+        <div class="exercise ${ex.examStyle ? 'exam-style' : ''}">
+          <div class="ex-head">
+            <span class="ex-ref">${ex.ref}${ex.examStyle ? '<span class="tag">síntese</span>' : ''}</span>
+            <div class="part-tools">
+              <button class="ghost-btn" data-bulk="open" data-scope="parts-${topic.id}-${i}">Abrir todas</button>
+              <button class="ghost-btn" data-bulk="close" data-scope="parts-${topic.id}-${i}">Fechar todas</button>
+            </div>
+          </div>
+          <div class="ex-body">${ex.statement}</div>
+          <div class="parts" id="parts-${topic.id}-${i}">${partsHTML}</div>
+        </div>
+      `;
+    }
+
+    // --- exercício com resolução única ---
+    return `
+      <div class="exercise ${ex.examStyle ? 'exam-style' : ''}">
+        <div class="ex-head">
+          <span class="ex-ref">${ex.ref}${ex.examStyle ? '<span class="tag">síntese</span>' : ''}</span>
+          <button class="res-btn" data-target="res-${topic.id}-${i}">Resolução</button>
+        </div>
+        <div class="ex-body">${ex.statement}</div>
+        <div class="resolution" id="res-${topic.id}-${i}">${ex.resolution}</div>
       </div>
-      <div class="ex-body">${ex.statement}</div>
-      <div class="resolution" id="res-${topic.id}-${i}">${ex.resolution}</div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   c.innerHTML = `
     <div class="hero">
@@ -111,8 +142,23 @@ function renderContent(exam, topic){
       const target = document.getElementById(btn.dataset.target);
       const showing = target.classList.toggle('show');
       btn.classList.toggle('open', showing);
-      btn.textContent = showing ? 'Ocultar resolução' : 'Resolução';
+      btn.textContent = showing ? 'Ocultar' : 'Resolução';
       if (showing) renderMath(target);
+    });
+  });
+
+  c.querySelectorAll('.ghost-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const open = btn.dataset.bulk === 'open';
+      document.getElementById(btn.dataset.scope)
+        .querySelectorAll('.res-btn').forEach(b => {
+          const target = document.getElementById(b.dataset.target);
+          if (target.classList.contains('show') === open) return;
+          target.classList.toggle('show', open);
+          b.classList.toggle('open', open);
+          b.textContent = open ? 'Ocultar' : 'Resolução';
+          if (open) renderMath(target);
+        });
     });
   });
 
