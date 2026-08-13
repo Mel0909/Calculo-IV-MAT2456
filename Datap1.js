@@ -533,6 +533,8 @@ window.DATA_P1 = {
               <p>Usando $\ln(1+x)=x+O(x^2)$ com $x=\dfrac{22}{15n+3}\to0$:</p>
               $$\ln a_n=n\ln\!\left(1+\frac{22}{15n+3}\right)=\frac{22n}{15n+3}+O\!\left(\frac1n\right)\longrightarrow\frac{22}{15}.$$
               <span class="step-label">Passo 4 — exponenciar</span>
+              <span class="step-label">Observação — não zere os termos antes do expoente</span>
+              <p>Zerar $\tfrac5n$ e $\tfrac1n$ de cara dá base $\tfrac35\cdot\tfrac53=1$ e o limite $1$ — errado. Esses pedacinhos são minúsculos, mas estão dentro de um parêntese elevado a $n$: acumulados $n$ vezes, eles viram justamente o $e$. Daí a receita de reescrever a base como $1+\text{algo}$ e deixar o expoente agir.</p>
               <div class="final">Converge para $e^{22/15}$.</div>
             `
           },
