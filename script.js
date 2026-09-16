@@ -92,7 +92,7 @@ function renderContent(exam, topic){
       return `
         <div class="exercise ${ex.examStyle ? 'exam-style' : ''}">
           <div class="ex-head">
-            <span class="ex-ref">${ex.ref}${ex.examStyle ? '<span class="tag">síntese</span>' : ''}</span>
+            <span class="ex-ref">${ex.ref}${ex.examStyle ? `<span class="tag">${ex.tag || 'síntese'}</span>` : ''}</span>
             <div class="part-tools">
               <button class="ghost-btn" data-bulk="open" data-scope="parts-${topic.id}-${i}">Abrir todas</button>
               <button class="ghost-btn" data-bulk="close" data-scope="parts-${topic.id}-${i}">Fechar todas</button>
@@ -108,7 +108,7 @@ function renderContent(exam, topic){
     return `
       <div class="exercise ${ex.examStyle ? 'exam-style' : ''}">
         <div class="ex-head">
-          <span class="ex-ref">${ex.ref}${ex.examStyle ? '<span class="tag">síntese</span>' : ''}</span>
+          <span class="ex-ref">${ex.ref}${ex.examStyle ? `<span class="tag">${ex.tag || 'síntese'}</span>` : ''}</span>
           <button class="res-btn" data-target="res-${topic.id}-${i}">Resolução</button>
         </div>
         <div class="ex-body">${ex.statement}</div>

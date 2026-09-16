@@ -365,6 +365,43 @@ html,body{
   color:var(--ink);
 }
 
+/* ---------- ALTERNATIVAS (múltipla escolha) ---------- */
+.alts{
+  list-style:none;
+  margin:12px 0 2px;
+  padding:0;
+}
+.alts li{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  padding:4px 0;
+}
+.alts .key{
+  font-family:var(--font-mono);
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.04em;
+  color:var(--teal);
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:2px 7px;
+  flex-shrink:0;
+  line-height:1.3;
+}
+
+.resolution .note{
+  margin-top:12px;
+  padding:10px 14px;
+  background:var(--cream);
+  border-left:3px solid var(--rust);
+  border-radius:0 8px 8px 0;
+  font-size:14.5px;
+  line-height:1.7;
+}
+.resolution .note b{ color:var(--ink); }
+
 /* ---------- EXERCÍCIOS EM LETRAS/ITENS ---------- */
 .parts{
   border-top:1px dashed var(--line);
