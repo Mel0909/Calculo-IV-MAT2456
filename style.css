@@ -497,3 +497,80 @@ html,body{
 @media (prefers-reduced-motion: reduce){
   *{ transition:none !important; }
 }
+
+/* ---------- FIGURAS (gráficos em SVG nas resoluções) ---------- */
+.figure{
+  margin:14px 0;
+  padding:12px 14px 10px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:8px;
+}
+.figure svg{ display:block; width:100%; max-width:640px; height:auto; margin:0 auto; }
+.figure-cap{
+  margin-top:8px;
+  font-size:13.5px;
+  line-height:1.55;
+  color:var(--ink-soft);
+}
+
+/* ---------- FORMULÁRIO (seção Decorar) ---------- */
+.formulario-wrap{ overflow-x:auto; margin:4px 0 20px; }
+.formulario{
+  width:100%;
+  border-collapse:collapse;
+  font-size:15px;
+  color:var(--ink);
+  background:var(--paper);
+}
+.formulario th, .formulario td{
+  border:1px solid var(--line);
+  padding:8px 12px;
+  text-align:left;
+  vertical-align:middle;
+}
+.formulario th{
+  font-family:var(--font-mono);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--gray);
+  background:var(--cream-deep);
+}
+.formulario td:first-child{ width:24%; }
+.formulario td:last-child{ min-width:96px; }
+.formulario tr.core td{ background:#fff; }
+.formulario tr.core td:first-child{ box-shadow:inset 3px 0 0 var(--teal); }
+
+/* títulos de bloco dentro do formulário */
+.intro .form-h{
+  font-family:var(--font-display);
+  font-size:21px;
+  font-weight:600;
+  color:var(--ink);
+  margin:30px 0 10px;
+}
+.formulario td code, .intro p code{ white-space:nowrap; }
+.formulario td code{
+  display:inline-block;
+  margin:1px 2px 1px 0;
+  background:var(--cream-deep);
+  padding:1px 5px;
+  border-radius:4px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--ink-soft);
+}
+/* no celular o hero vira coluna: impede que tabelas largas alarguem a página */
+.hero-text{ max-width:100%; }
+/* caixa de destaque dentro do formulário */
+.intro .destaque{
+  margin:6px 0 18px;
+  padding:14px 18px 4px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-left:4px solid var(--teal);
+  border-radius:0 10px 10px 0;
+}
+.intro .destaque p{ font-size:16px; margin:0 0 10px; }

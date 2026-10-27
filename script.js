@@ -128,12 +128,14 @@ function renderContent(exam, topic){
     </div>
 
     <div class="meta-row">
-      <span><b>Curso.</b> MAT2456 — Cálculo IV</span>
-      <span><b>Prova.</b> ${exam.examLabel}</span>
-      <span><b>Fonte.</b> ${exam.listaLabel}</span>
+      ${(topic.meta || exam.meta || [
+        ['Curso.', 'MAT2456 — Cálculo IV'],
+        ['Prova.', exam.examLabel],
+        ['Fonte.', exam.listaLabel],
+      ]).map(([k, v]) => `<span><b>${k}</b> ${v}</span>`).join('')}
     </div>
 
-    <div class="ex-section-title">Exercícios do tópico</div>
+    <div class="ex-section-title">${topic.sectionTitle || 'Exercícios do tópico'}</div>
     ${exercisesHTML}
   `;
 
